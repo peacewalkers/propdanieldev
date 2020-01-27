@@ -1,0 +1,49 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreatePostsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('posts', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('title');
+            $table->string('description');
+            $table->string('address');
+            $table->string('city');
+            $table->string('amenities');
+            $table->integer('bedrooms');
+            $table->integer('area');
+            $table->integer('price')->nullable();
+            $table->string('status');
+            $table->string('availability')->nullable();
+            $table->date('launchdate')->nullable();
+            $table->string('featuredimage');
+            $table->string('gallery');
+            $table->string('floorplan')->nullable();
+
+            $table->timestamps();
+
+            $table->index('user_id');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('posts');
+    }
+}
